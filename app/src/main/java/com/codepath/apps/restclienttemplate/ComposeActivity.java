@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.wafflecopter.charcounttextview.CharCountTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +60,17 @@ public class ComposeActivity extends Activity{
                         super.onFailure(statusCode, headers, responseString, throwable);
                     }
                 });
+            }
+        });
+
+        CharCountTextView charCountTextView = (CharCountTextView) findViewById(R.id.tvTextCounter);
+        EditText editText = findViewById(R.id.etTweet);
+
+        charCountTextView.setEditText(editText);
+        charCountTextView.setCharCountChangedListener(new CharCountTextView.CharCountChangedListener() {
+            @Override
+            public void onCountChanged(int i, boolean b) {
+
             }
         });
     }

@@ -109,7 +109,7 @@ public class TimelineActivity extends AppCompatActivity {
         // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             // Extract name value from result extras
-            Tweet object = (Tweet) Parcels.unwrap( data.getParcelableExtra(Tweet.class.getSimpleName()));
+            Tweet object = (Tweet) Parcels.unwrap(data.getParcelableExtra(Tweet.class.getSimpleName()));
 
             // Notify the adapter that a tweet has been added
             tweets.add(0, object);
