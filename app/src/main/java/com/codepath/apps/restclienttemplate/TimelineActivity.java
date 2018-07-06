@@ -29,6 +29,9 @@ public class TimelineActivity extends AppCompatActivity {
     private ArrayList<Tweet> tweets;
     private RecyclerView rvTweets;
 
+    //stores the lowest Tweet ID ever seen
+    private long max_id;
+
     private SwipeRefreshLayout swipeContainer;
 
 
@@ -105,6 +108,10 @@ public class TimelineActivity extends AppCompatActivity {
                         Tweet tweet = Tweet.fromJson(response.getJSONObject(i));
                         tweets.add(tweet);
                         tweetAdapter.notifyItemInserted(tweets.size() - 1);
+
+                        if (i == 0) {
+                            max_id = tweet.uid;
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
