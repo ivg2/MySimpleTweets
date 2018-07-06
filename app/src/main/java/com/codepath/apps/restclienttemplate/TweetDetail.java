@@ -10,12 +10,13 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
 
-public class tweetDetail extends AppCompatActivity {
+public class TweetDetail extends AppCompatActivity {
     Tweet tweet;
 
     TextView profileName;
     TextView profileUserName;
     TextView description;
+    TextView time;
     ImageView profileImage;
 
     //TODO favorites and retweet
@@ -23,11 +24,12 @@ public class tweetDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_tweet);
+        setContentView(R.layout.tweet_detail);
 
         profileName = findViewById(R.id.name);
         profileUserName = findViewById(R.id.screenName);
         description = findViewById(R.id.description);
+        time = findViewById(R.id.timeDetail);
         profileImage = findViewById(R.id.imageView);
 
         //unwrap the movie passed in via intent, using its simple name as a key
@@ -36,6 +38,7 @@ public class tweetDetail extends AppCompatActivity {
         profileName.setText(tweet.user.name);
         profileUserName.setText(tweet.user.screenName);
         description.setText(tweet.body);
+        time.setText(tweet.createdAt);
 
         Glide.with(this)
                 .load(tweet.user.profileImageUrl)

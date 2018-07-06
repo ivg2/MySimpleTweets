@@ -7,9 +7,17 @@
         android:title="twitter"
         app:showAsAction="always"
         android:layout_marginLeft="30dp"></item>
+
+    <item
+        android:id="@+id/search_button"
+        android:icon="@drawable/search"
+        android:title="twitter"
+        app:showAsAction="always"
+        android:layout_marginLeft="30dp"></item>
+
     <item
         android:id="@+id/miCompose"
-        android:icon="@drawable/download"
+        android:icon="@drawable/compose"
         android:onClick="onComposeAction"
         app:showAsAction="ifRoom"
         android:title="Compose"

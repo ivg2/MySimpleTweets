@@ -92,7 +92,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView ivProfileImage;
         public TextView tvBody;
         public TextView tvUsername;
@@ -105,6 +105,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvBody = itemView.findViewById(R.id.tvBody);
             tvUsername = itemView.findViewById(R.id.tvUserName);
             tvTime = itemView.findViewById(R.id.tvTime);
+            itemView.setOnClickListener(this);
         }
 
         //when a user clicks on a row show the TwitterDetailActivity
@@ -117,7 +118,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                 // get the movie at the position, this won't work if the class is static
                 Tweet tweet = tweets.get(position);
                 // create intent for the new activity
-                Intent intent = new Intent(context, tweetDetail.class);
+                Intent intent = new Intent(context, TweetDetail.class);
                 // serialize the movie using parceler, use its short name as a key
                 intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
                 // show the activity
