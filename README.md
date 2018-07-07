@@ -1,33 +1,79 @@
-# RestClientTemplate [![Build Status](https://travis-ci.org/codepath/android-rest-client-template.svg?branch=master)](https://travis-ci.org/codepath/android-rest-client-template)
+# Project 3 - *MySimpleTweets*
 
-## Overview
+**MySimpleTweets** is an android app that allows a user to view his Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-RestClientTemplate is a skeleton Android project that makes writing Android apps sourced from OAuth JSON REST APIs as easy as possible. This skeleton project
-combines the best libraries and structure to enable quick development of rich API clients. The following things are supported out of the box:
+Time spent: **18** hours spent in total
 
- * Authenticating with any OAuth 1.0a or OAuth 2 API
- * Sending requests for and parsing JSON API data using a defined client
- * Persisting data to a local SQLite store through an ORM layer
- * Displaying and caching remote image data into views
+## User Stories
 
-The following libraries are used to make this possible:
+The following **required** functionality is completed:
 
- * [scribe-java](https://github.com/fernandezpablo85/scribe-java) - Simple OAuth library for handling the authentication flow.
- * [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
- * [codepath-oauth](https://github.com/thecodepath/android-oauth-handler) - Custom-built library for managing OAuth authentication and signing of requests
- * [Glide](https://github.com/bumptech/glide) - Used for async image loading and caching them in memory and on disk.
- * [Room](https://developer.android.com/training/data-storage/room/index.html) - Simple ORM for persisting a local SQLite database on the Android device
+* [X]	User can **sign in to Twitter** using OAuth login
+* [X]	User can **view tweets from their home timeline**
+  * [X] User is displayed the username, name, and body for each tweet
+  * [X] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
+* [X] User can **compose and post a new tweet**
+  * [X] User can click a “Compose” icon in the Action Bar on the top right
+  * [X] User can then enter a new tweet and post this to twitter
+  * [X] User is taken back to home timeline with **new tweet visible** in timeline
+  * [X] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
 
-## Usage
+The following **optional** features are implemented:
 
-### 1. Configure the REST client
+* [X] User can **see a counter with total number of characters left for tweet** on compose tweet page
+* [X] User can **pull down to refresh tweets timeline**
+* [X] User is using **"Twitter branded" colors and styles**
+* [ ] User sees an **indeterminate progress indicator** when any background or network task is happening
+* [ ] User can **select "reply" from detail view to respond to a tweet**
+  * [ ] User that wrote the original tweet is **automatically "@" replied in compose**
+* [X] User can tap a tweet to **open a detailed tweet view**
+  * [X] User can **take favorite (and unfavorite) or reweet** actions on a tweet
+* [ ] User can **see embedded image media within a tweet** on list or detail view.
 
-Open `src/com.codepath.apps.restclienttemplate/RestClient.java`. Configure the `REST_API_INSTANCE`, `REST_URL`, `REST_CONSUMER_KEY`, `REST_CONSUMER_SECRET` based on the values needed to connect to your particular API. The `REST_URL` should be the base URL used for connecting to the API (i.e `https://api.twitter.com`). The `REST_API_INSTANCE` should be the class defining the service you wish to connect to. Check out the [full list of services](https://github.com/scribejava/scribejava/tree/master/scribejava-apis/src/main/java/com/github/scribejava/apis) you can select (i.e `FlickrApi.instance()`).
+The following **bonus** features are implemented:
 
-For example if I wanted to connect to Twitter:
+* [ ] User can view more tweets as they scroll with infinite pagination
+* [ ] Compose tweet functionality is build using modal overlay
+* [X] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
+* [X] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.com/android/Drawables#vector-drawables) where appropriate.
+* [ ] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
+* [ ] User can view following / followers list through any profile they view.
+* [ ] User can see embedded image media within the tweet detail view
+* [ ] Use the popular ButterKnife annotation library to reduce view boilerplate.
+* [ ] On the Twitter timeline, leverage the [CoordinatorLayout](http://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events) to apply scrolling behavior that [hides / shows the toolbar](http://guides.codepath.com/android/Using-the-App-ToolBar#reacting-to-scroll).
+* [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode.
 
-```java
-// RestClient.java
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+! [Walkthrough] (Twitter.gif)
+GIF created with [RecordIt](http://recordit.co/).
+
+## Notes
+
+Describe any challenges encountered while building the app.
+
+## Open-source libraries used
+
+- [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
+
+## License
+
+    Copyright [2018] [Isabel Greiner]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 public class RestClient extends OAuthBaseClient {
     public static final BaseApi REST_API_INSTANCE = TwitterApi.instance();
     public static final String REST_URL = "https://api.twitter.com/1.1";
