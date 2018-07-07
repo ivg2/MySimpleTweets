@@ -52,8 +52,7 @@ GIF created with [RecordIt](http://recordit.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
-
+The trickiest part of this assignment was figuring out how to compose a tweet and post it to the twitter timeline through the API. 
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
