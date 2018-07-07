@@ -47,7 +47,7 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-! [Walkthrough](Twitter.gif)
+! [Walkthrough](TwitterTwit.gif)
 GIF created with [RecordIt](http://recordit.co/).
 
 ## Notes
