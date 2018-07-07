@@ -11,6 +11,8 @@ public class Tweet {
     public long uid; //database ID for the tweet
     public String createdAt;
     public User user;
+    public Long favorite_count;
+    public Boolean isFavorited = false;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
@@ -20,6 +22,8 @@ public class Tweet {
         tweet.uid = jsonObject.getLong("id");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.isFavorited = jsonObject.optBoolean("favorited");
+        tweet.favorite_count = jsonObject.optLong("favorite_count");
 
         return tweet;
     }

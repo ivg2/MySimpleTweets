@@ -2,6 +2,8 @@ package com.codepath.apps.restclienttemplate;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +19,9 @@ public class TweetDetail extends AppCompatActivity {
     TextView profileUserName;
     TextView description;
     TextView time;
+    TextView count;
     ImageView profileImage;
+    ImageButton btnFavorite;
 
     //TODO favorites and retweet
 
@@ -31,6 +35,7 @@ public class TweetDetail extends AppCompatActivity {
         description = findViewById(R.id.description);
         time = findViewById(R.id.timeDetail);
         profileImage = findViewById(R.id.imageView);
+        btnFavorite = findViewById(R.id.imageButton);
 
         //unwrap the movie passed in via intent, using its simple name as a key
         tweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));
@@ -44,5 +49,32 @@ public class TweetDetail extends AppCompatActivity {
                 .load(tweet.user.profileImageUrl)
                 .into(profileImage);
 
+        //initialize button to correct state
+        if(tweet.isFavorited) {
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+            tweet.isFavorited = true;
+            tweet.favorite_count ++;
+        } else {
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+            tweet.isFavorited = false;
+            tweet.favorite_count --;
+        }
+
+        count = findViewById(R.id.count);
+        count.setText(Long.toString(tweet.favorite_count));
+    }
+
+    public void favorite(View v) {
+        if(tweet.isFavorited) {
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+            tweet.isFavorited = false;
+            tweet.favorite_count --;
+        } else {
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+            tweet.isFavorited = true;
+            tweet.favorite_count ++;
+        }
+
+        count.setText(Long.toString(tweet.favorite_count));
     }
 }
